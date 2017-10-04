@@ -66,10 +66,14 @@ os = Table('os', metadata,
 #
 hardware = Table('hardware', metadata,
                  Column('id', BigInteger, primary_key=True),
-                 Column('pos_id', BigInteger, ForeignKey(
-                     "position.id"), nullable=False),
-                 Column('type', Enum('workstation', 'server', 'storage', 'network',
-                                     'pdu', 'ups', 'printer', 'ilo'), nullable=False)  # TODO
+                 Column('pos_id', BigInteger, ForeignKey("position.id"), nullable=False),
+                 Column('type', Enum('workstation', 'server', 'storage', 'network', 'pdu', 'ups', 'printer', 'ilo','screen'), nullable=False), # TODO
+                 Column('status', Enum('in_stock', 'activated', 'to_be_decommisioned', 'decommisioned'), nullable=False), # TODO
+                 Column('serial_num', BigInteger),
+                 Column('model_name', BigInteger),
+                 Column('model_num', BigInteger),
+                 Column('warranty', BigInteger),
+                 Column('id', BigInteger, primary_key=True)
                  )
 
 service = Table('service', metadata,
@@ -77,8 +81,9 @@ service = Table('service', metadata,
                 Column('hw_id', BigInteger, ForeignKey(
                     "hardware.id"), nullable=False),
                 Column('type', Enum('dhcp', 'dns', 'ntp', 'hypervisor', 'database',
-                                    'application_server' 'storage', 'compute', 'network', 'message_broker')),
-                Column('arch', String(10), nullable=False),
+                                    'application_server' 'storage', 'compute', 'network', 'message_broker', 'orchestrator', 
+                                    'monitoring', 'logging', 'service_mesh',
+                                    'printing', 'cache', 'cluster'))
                 )
 
 
@@ -309,7 +314,7 @@ network_interface = Table('network_interface', metadata,
                           Column('id', BigInteger, primary_key=True),
                           Column('serial_number', String(20), nullable=False),
                           Column('model', String(20), nullable=False),
-                          Column('vendor_id', BigInteger, ForeignKey("vendor.id"), nullable=False),
+                          Column('manufacturer_id', BigInteger, ForeignKey("manufacturer.id"), nullable=False),
                           Column('bond', String(20), nullable=False),
                           Column('description', String(50), nullable=False),
                           Column('ipv4', Integer, nullable=False),
@@ -366,6 +371,13 @@ firewall_rule = Table('firewall_rule', metadata,
                       Column('icmp', String(20), nullable=False)
                       )
 
+
+storage = Table('storage', metadata,
+                     Column('id', BigInteger, primary_key=True),
+                     Column('name', Integer, nullable=False),
+                     Column('description', Integer)
+                     )
+                     
 #
 # iSCSI
 #
@@ -373,6 +385,7 @@ firewall_rule = Table('firewall_rule', metadata,
 # Storage server
 iscsi_target = Table('iscsi_target', metadata,
                      Column('id', BigInteger, primary_key=True),
+                     Column('storage_id', BigInteger, ForeignKey("storage.id")),
                      Column('initiator-address', Integer, nullable=False),
                      Column('backing-store', Integer),
                      Column('target ', Integer)
@@ -381,6 +394,7 @@ iscsi_target = Table('iscsi_target', metadata,
 # Client
 iscsi_initiator = Table('iscsi_initiator', metadata,
                         Column('id', BigInteger, primary_key=True),
+                        Column('storage_id', BigInteger, ForeignKey("storage.id")),
                         Column('www_id', Integer, nullable=False),
                         Column('remote_ipv4', Integer),
                         Column('remote_ipv6', Integer),
@@ -445,7 +459,7 @@ storage_pool = Table('storage_pool', metadata,
 # storage pool is a network of storage servers.
 cluster = Table('cluster', metadata,
                              Column('id', BigInteger, primary_key=True),
-                             Column('host_type', Enum('master','slave','universal')),
+                             Column('host_type', Enum('master','slave','universal_node')),
                              Column('net_device_id', BigInteger, ForeignKey("network_device.id"), nullable=False)  
 )
 
@@ -551,8 +565,24 @@ project = Table('project', metadata,
 
 employee = Table('employee', metadata,
                 Column('id', BigInteger, primary_key=True),
-                Column('team_id', BigInteger, ForeignKey("team.id"), nullable=False),
-                Column('pref_name', String(40), nullable=False),
+                Column('corp_id', BigInteger, ForeignKey("corporation.id"), nullable=False),
+                Column('title', String(40), nullable=False),
+                Column('name', String(40), nullable=False),
+                Column('surname', String(40), nullable=False),
+                Column('gender', String(40), nullable=False),
+                Column('internal_id', String(40), nullable=False),
+                Column('address', String(40), nullable=False),
+                Column('city', String(40), nullable=False),
+                Column('country', String(40), nullable=False),
+                Column('zipcode', String(40), nullable=False),
+                Column('id_card', String(40), nullable=False),
+                Column('birth_date', String(40), nullable=False),
+                Column('birth_id', String(100))
+                )
+
+project_member = Table('project_member', metadata,
+                Column('id', BigInteger, primary_key=True),
+                Column('emp_id', BigInteger, ForeignKey("employee.id"), nullable=False),
                 Column('pref_value', String(100))
                 )
 
@@ -560,21 +590,14 @@ employee = Table('employee', metadata,
 
 service_level_agreement = Table('sla', metadata,
                                 Column('id', BigInteger, primary_key=True),
-                                Column('pref_id', BigInteger,
-                                       primary_key=True),
-                                Column('serv_id', BigInteger, ForeignKey(
-                                    "service.id"), nullable=False),
+                                Column('pref_id', BigInteger, primary_key=True),
+                                Column('serv_id', BigInteger, ForeignKey('service.id"), nullable=False),
                                 Column('name', String(40), nullable=False),
-                                Column('status', Enum('inactive', 'active', 'resolved',
-                                                      'breached'), default='inactive', nullable=False),
-                                Column('first_response', String(
-                                    10), nullable=False),
-                                Column('time_to_solve', String(
-                                    10), nullable=False),
-                                Column('description', String(
-                                    40), nullable=False),
-                                Column('last_update', String(
-                                    40), nullable=False)
+                                Column('status', Enum('inactive', 'active', 'resolved', 'breached'), default='inactive', nullable=False),
+                                Column('first_response', String(10), nullable=False),
+                                Column('time_to_solve', String(10), nullable=False),
+                                Column('description', String(40), nullable=False),
+                                Column('last_update', String(40), nullable=False)
                                 )
 
 
