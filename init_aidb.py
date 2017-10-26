@@ -377,6 +377,26 @@ storage = Table('storage', metadata,
                      Column('name', Integer, nullable=False),
                      Column('description', Integer)
                      )
+
+
+shared_folder = Table('shared_folder', metadata,
+                     Column('id', BigInteger, primary_key=True),
+                     Column('name', Integer, nullable=False),
+                     Column('description', Integer)
+                     )
+
+nfs = Table('nfs', metadata,
+                     Column('id', BigInteger, primary_key=True),
+                     Column('name', Integer, nullable=False),
+                     Column('virtual', Integer, nullable=False), #for openstack
+                     Column('description', Integer)
+                     )
+
+samba = Table('samba', metadata,
+                     Column('id', BigInteger, primary_key=True),
+                     Column('name', Integer, nullable=False),
+                     Column('description', Integer)
+                     )
                      
 #
 # iSCSI

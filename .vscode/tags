@@ -1,0 +1,62 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+a_record	../init_aidb.py	/^a_record = Table('a_record', metadata,$/;"	kind:variable	line:255
+bridge	../init_aidb.py	/^bridge = Table('bridge', metadata,$/;"	kind:variable	line:307
+cluster	../init_aidb.py	/^cluster = Table('cluster', metadata,$/;"	kind:variable	line:460
+cname	../init_aidb.py	/^cname = Table('cname', metadata,$/;"	kind:variable	line:239
+corporation	../init_aidb.py	/^corporation = Table('corporation', metadata,$/;"	kind:variable	line:538
+department	../init_aidb.py	/^department = Table('department', metadata,$/;"	kind:variable	line:545
+dhcp	../init_aidb.py	/^dhcp = Table('dhcp', metadata,$/;"	kind:variable	line:114
+dhcp_group	../init_aidb.py	/^dhcp_group = Table('dhcp_group', metadata,$/;"	kind:variable	line:121
+dhcp_shared_network	../init_aidb.py	/^dhcp_shared_network = Table('dhcp_shared_network', metadata,$/;"	kind:variable	line:196
+dhcp_static_host	../init_aidb.py	/^dhcp_static_host = Table('dhcp_static_host', metadata,$/;"	kind:variable	line:152
+dhcp_subnet	../init_aidb.py	/^dhcp_subnet = Table('dhcp_subnet', metadata,$/;"	kind:variable	line:171
+dns	../init_aidb.py	/^dns = Table('dns', metadata,$/;"	kind:variable	line:219
+employee	../init_aidb.py	/^employee = Table('employee', metadata,$/;"	kind:variable	line:566
+engine	../init_aidb.py	/^engine = create_engine('sqlite:\/\/\/cmdb_core.sqlite')$/;"	kind:variable	line:15
+firewall_rule	../init_aidb.py	/^firewall_rule = Table('firewall_rule', metadata,$/;"	kind:variable	line:361
+hardware	../init_aidb.py	/^hardware = Table('hardware', metadata,$/;"	kind:variable	line:67
+ilo	../init_aidb.py	/^ilo = Table('ilo', metadata,$/;"	kind:variable	line:524
+init_aidb.py	../init_aidb.py	1;"	kind:file	line:1
+iscsi_initiator	../init_aidb.py	/^iscsi_initiator = Table('iscsi_initiator', metadata,$/;"	kind:variable	line:395
+iscsi_target	../init_aidb.py	/^iscsi_target = Table('iscsi_target', metadata,$/;"	kind:variable	line:386
+location	../init_aidb.py	/^location = Table('location', metadata,$/;"	kind:variable	line:24
+manufacturer	../init_aidb.py	/^manufacturer = Table('manufacturer', metadata,$/;"	kind:variable	line:43
+metadata	../init_aidb.py	/^metadata = MetaData()$/;"	kind:variable	line:17
+mx_record	../init_aidb.py	/^mx_record = Table('mx_record', metadata,$/;"	kind:variable	line:268
+network_device	../init_aidb.py	/^network_device = Table('network_device', metadata,$/;"	kind:variable	line:468
+network_interface	../init_aidb.py	/^network_interface = Table('network_interface', metadata,$/;"	kind:variable	line:313
+nic_stack	../init_aidb.py	/^nic_stack = Table('nic_stack', metadata,$/;"	kind:variable	line:352
+ns_record	../init_aidb.py	/^ns_record = Table('ns_record', metadata,$/;"	kind:variable	line:291
+ntp	../init_aidb.py	/^ntp = Table('ntp', metadata,$/;"	kind:variable	line:96
+ntp_server	../init_aidb.py	/^ntp_server = Table('ntp_server', metadata,$/;"	kind:variable	line:103
+os	../init_aidb.py	/^os = Table('os', metadata,$/;"	kind:variable	line:49
+ospf_table	../init_aidb.py	/^ospf_table = Table('ospf_table', metadata,$/;"	kind:variable	line:342
+position	../init_aidb.py	/^position = Table('position', metadata,$/;"	kind:variable	line:33
+primary_key	../init_aidb.py	/^                                            primary_key=True),$/;"	kind:variable	line:518
+printer	../init_aidb.py	/^printer = Table('printer', metadata,$/;"	kind:variable	line:509
+project	../init_aidb.py	/^project = Table('project', metadata,$/;"	kind:variable	line:559
+project_member	../init_aidb.py	/^project_member = Table('project_member', metadata,$/;"	kind:variable	line:583
+ptr_record	../init_aidb.py	/^ptr_record = Table('ptr_record', metadata,$/;"	kind:variable	line:277
+root_domain	../init_aidb.py	/^root_domain = Table('root_domain', metadata,$/;"	kind:variable	line:229
+router	../init_aidb.py	/^router = Table('router', metadata,$/;"	kind:variable	line:488
+routing_table	../init_aidb.py	/^routing_table = Table('routing_table', metadata,$/;"	kind:variable	line:333
+server	../init_aidb.py	/^server = Table('server', metadata,$/;"	kind:variable	line:418
+service	../init_aidb.py	/^service = Table('service', metadata,$/;"	kind:variable	line:79
+service_level_agreement	../init_aidb.py	/^service_level_agreement = Table('sla', metadata,$/;"	kind:variable	line:591
+storage	../init_aidb.py	/^storage = Table('storage', metadata,$/;"	kind:variable	line:375
+storage_area_network	../init_aidb.py	/^storage_area_network = Table('storage_area_network', metadata,$/;"	kind:variable	line:438
+storage_pool	../init_aidb.py	/^storage_pool = Table('storage_pool', metadata,$/;"	kind:variable	line:453
+switch	../init_aidb.py	/^switch = Table('switch', metadata,$/;"	kind:variable	line:476
+team	../init_aidb.py	/^team = Table('team', metadata,$/;"	kind:variable	line:552
+txt_record	../init_aidb.py	/^txt_record = Table('txt_record', metadata,$/;"	kind:variable	line:299
+uninterruptible_power_supply	../init_aidb.py	/^uninterruptible_power_supply = Table('uninterruptible_power_supply', metadata,$/;"	kind:variable	line:516
+virtual_machine	../init_aidb.py	/^virtual_machine = Table('virtual_machine', metadata,$/;"	kind:variable	line:430
+vrouter	../init_aidb.py	/^vrouter = Table('vrouter', metadata,$/;"	kind:variable	line:496
+vswitch	../init_aidb.py	/^vswitch = Table('vswitch', metadata,$/;"	kind:variable	line:483
+wireless_access_point	../init_aidb.py	/^wireless_access_point = Table('wireless_access_point', metadata,$/;"	kind:variable	line:502
+workstation	../init_aidb.py	/^workstation = Table('workstation', metadata,$/;"	kind:variable	line:409
