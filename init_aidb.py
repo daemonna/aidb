@@ -331,7 +331,7 @@ network_interface = Table('network_interface', metadata,
                           )
 
 routing_table = Table('routing_table', metadata,
-                      Column('id', BigInteger, primary_key=True),
+                      Column('id', BigInteger, primary_key=True),3
                       Column('destination', Integer, nullable=False),
                       Column('netmask', Integer),
                       Column('gateway', Integer),
@@ -382,21 +382,10 @@ storage = Table('storage', metadata,
 shared_folder = Table('shared_folder', metadata,
                      Column('id', BigInteger, primary_key=True),
                      Column('name', Integer, nullable=False),
+                     Column('version', Integer, nullable=False),
+                     Column('directory', Integer, nullable=False),
                      Column('description', Integer)
-                     )
-
-nfs = Table('nfs', metadata,
-                     Column('id', BigInteger, primary_key=True),
-                     Column('name', Integer, nullable=False),
-                     Column('virtual', Integer, nullable=False), #for openstack
-                     Column('description', Integer)
-                     )
-
-samba = Table('samba', metadata,
-                     Column('id', BigInteger, primary_key=True),
-                     Column('name', Integer, nullable=False),
-                     Column('description', Integer)
-                     )
+                     ) # includes nfs and samba
                      
 #
 # iSCSI
@@ -619,6 +608,24 @@ service_level_agreement = Table('sla', metadata,
                                 Column('description', String(40), nullable=False),
                                 Column('last_update', String(40), nullable=False)
                                 )
+
+
+
+
+# Openstack services
+openstack_service = Table('openstack_service', metadata,
+                                Column('id', BigInteger, primary_key=True),
+                                Column('pref_id', BigInteger, primary_key=True),
+                                Column('serv_id', BigInteger, ForeignKey('service.id'), nullable=False),
+                                Column('name', String(40), nullable=False),
+                                Column('status', Enum('inactive', 'active', 'resolved', 'breached'), default='inactive', nullable=False),
+                                Column('first_response', String(10), nullable=False),
+                                Column('time_to_solve', String(10), nullable=False),
+                                Column('description', String(40), nullable=False),
+                                Column('last_update', String(40), nullable=False)
+                                )
+
+
 
 
 # "tenantId": "tutorial",
