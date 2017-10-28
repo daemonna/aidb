@@ -78,8 +78,7 @@ hardware = Table('hardware', metadata,
 
 service = Table('service', metadata,
                 Column('id', BigInteger, primary_key=True),
-                Column('hw_id', BigInteger, ForeignKey(
-                    "hardware.id"), nullable=False),
+                Column('hw_id', BigInteger, ForeignKey("hardware.id"), nullable=False),
                 Column('type', Enum('dhcp', 'dns', 'ntp', 'hypervisor', 'database',
                                     'application_server' 'storage', 'compute', 'network', 'message_broker', 'orchestrator', 
                                     'monitoring', 'logging', 'service_mesh',
@@ -88,7 +87,38 @@ service = Table('service', metadata,
 
 
 
+host = Table('host', metadata,
+                Column('id', BigInteger, primary_key=True),
+                Column('ip_addr', BigInteger),
+                Column('mac_addr', BigInteger),
+                Column('type', Enum('physical', 'virtual'))
+                )
 
+hw_host = Table('hw_host', metadata,  #TODO
+                Column('host_id', BigInteger, ForeignKey("host.id"), nullable=False),
+                Column('hw_id', BigInteger, ForeignKey("hardware.id"), nullable=False)
+                )
+
+host_group = Table('host_group', metadata,
+                Column('id', BigInteger, primary_key=True),
+                Column('name', String(250)),
+                Column('description', String(250)),
+                Column('host_id', BigInteger, ForeignKey("host.id"), nullable=False),
+                )
+
+openstack_tenant = Table('openstack_tenant', metadata,
+                Column('id', BigInteger, primary_key=True),
+                Column('name', String(250)),
+                Column('uuid', String(250)),
+                Column('host_id', BigInteger, ForeignKey("host.id"), nullable=False),
+                )
+
+openstack_tenant_hosts = Table('openstack_tenant_hosts', metadata,
+                Column('id', BigInteger, primary_key=True),
+                Column('name', String(250)),
+                Column('sotenant_id', BigInteger, ForeignKey("openstack_tenant.id"), nullable=False),
+                Column('host_id', BigInteger, ForeignKey("host.id"), nullable=False),
+                )
 
 #
 # NTP
@@ -331,7 +361,7 @@ network_interface = Table('network_interface', metadata,
                           )
 
 routing_table = Table('routing_table', metadata,
-                      Column('id', BigInteger, primary_key=True),3
+                      Column('id', BigInteger, primary_key=True),
                       Column('destination', Integer, nullable=False),
                       Column('netmask', Integer),
                       Column('gateway', Integer),
