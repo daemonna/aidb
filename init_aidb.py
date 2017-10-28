@@ -602,6 +602,8 @@ project = Table('project', metadata,
                 Column('pref_value', String(100))
                 )
 
+
+
 employee = Table('employee', metadata,
                 Column('id', BigInteger, primary_key=True),
                 Column('corp_id', BigInteger, ForeignKey("corporation.id"), nullable=False),
@@ -621,9 +623,12 @@ employee = Table('employee', metadata,
 
 project_member = Table('project_member', metadata,
                 Column('id', BigInteger, primary_key=True),
+                Column('proj_id', BigInteger, ForeignKey("project.id"), nullable=False),
                 Column('emp_id', BigInteger, ForeignKey("employee.id"), nullable=False),
                 Column('pref_value', String(100))
                 )
+
+
 
 # SLA features
 
