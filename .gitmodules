@@ -1,0 +1,3 @@
+[submodule "aidb"]
+	path = aidb
+	url = https://github.com/peterducai/aidb.git
