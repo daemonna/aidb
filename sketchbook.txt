@@ -22,6 +22,27 @@ Approvals
 
 
 
+docker run -it --rm --user "$(id -u):$(id -g)" -v /etc/passwd:/etc/passwd:ro postgres
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+
+
+
+Alternatively, you can just mount a volume to /docker-entrypoint-initdb.d/ that contains all your DDL scripts. You can put in *.sh, *.sql, or *.sql.gz files and it will take care of executing those on start-up.
+
+e.g. (assuming you have your scripts in /tmp/my_scripts)
+
+docker run -v /tmp/my_scripts:/docker-entrypoint-initdb.d postgres
+
+
+
+docker images |grep -v REPOSITORY|awk '{print $1}'|xargs -L1 docker pull 
+
+find . -mindepth 1 -maxdepth 1 -type d -print -exec git -C {} pull \;
+
+
+
+
 
 
 
